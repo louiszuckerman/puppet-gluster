@@ -48,7 +48,8 @@ This module also provides the reference implementation of [targeted self-heal].
 Requirements to use this feature are:
 
 1. Glusterfs version in 3.1 or 3.2 series.  It's not necessary on Glusterfs 3.3+
-1. Bricks are named &lt;volume&gt;N in a common brick parent directory (eg. /bricks/myvol_staging{0..4})
+1. Bricks are named &lt;volume&gt;N in a common brick parent directory (eg. 
+/bricks/myvol_staging{0..4})
 1. The server with bricks in the volume also has a client mount of the volume
 
 To use, add a gluster::selfheal::hourly declaration to each server with bricks 
