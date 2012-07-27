@@ -21,10 +21,20 @@ bricks, servers, and clients -- but not pools or volumes.
         "/bricks/myvol0": device => "e1";
     }
 
-### A client mounting myvol_staging from server1:
+### A FUSE client mounting myvol_staging:
 
     include gluster
     gluster::client::volume {
+        "myvol_staging":
+            mount_point => "/mnt/myvol",
+            volfile_server => "server1.my.domain.net",
+            mounted => "mounted";
+    }
+
+### An NFS client mounting myvol_staging (very similar to previous):
+
+    include gluster
+    gluster::client::nfs {
         "myvol_staging":
             mount_point => "/mnt/myvol",
             volfile_server => "server1.my.domain.net",
@@ -38,7 +48,7 @@ This module also provides the reference implementation of [targeted self-heal].
 Requirements to use this feature are:
 
 1. Glusterfs version in 3.1 or 3.2 series.  It's not necessary on Glusterfs 3.3+
-1. Bricks are named &lt;volume&gt;N in a common brick parent directory (eg. /bricks/myvol{0..4})
+1. Bricks are named &lt;volume&gt;N in a common brick parent directory (eg. /bricks/myvol_staging{0..4})
 1. The server with bricks in the volume also has a client mount of the volume
 
 To use, add a gluster::selfheal::hourly declaration to each server with bricks 
@@ -52,6 +62,13 @@ in the volume...
 
 I _highly_ recommend reviewing & customizing this feature to suit your own needs.  
 
+## Caveats:
+
+- I primarily use Ubuntu so YMMV on other distributions.
+- I use my [PPA] packages which means I install the "glusterd" package for the 
+server.  You will need to change that package name to "glusterfs-server" or 
+whatever if you do not use my packages.
+
 ## Dependencies:
 
 - My nagios module (yet to be released; replace with your own)
@@ -62,3 +79,4 @@ I _highly_ recommend reviewing & customizing this feature to suit your own needs
 - MIT License (see COPYING file)
 
 [targeted self-heal]: http://community.gluster.org/a/howto-targeted-self-heal-repairing-less-than-the-whole-volume/
+[PPA]: https://launchpad.net/~semiosis

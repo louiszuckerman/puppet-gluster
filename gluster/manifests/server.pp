@@ -1,5 +1,4 @@
 class gluster::server inherits gluster {
-	$semiosis_ppa_glusterfs_version = "3.1.7-1ubuntu~ppa1~oneiric1"
 	nagios::target::nrpeservicecheck {
 		"glusterd" :
 			description => "Gluster Daemon",
