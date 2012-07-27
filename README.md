@@ -1,7 +1,7 @@
 # puppet-gluster
 
-This is my puppet-gluster module.  I use it to manage my gluster bricks, 
-servers, and clients -- but not pools or volumes.
+This is my puppet-gluster module.  I use it to model and monitor my glusterfs 
+bricks, servers, and clients -- but not pools or volumes.
 
 ## Usage:
 
@@ -35,3 +35,7 @@ servers, and clients -- but not pools or volumes.
 
 - My nagios module (yet to be released)
 - My logstash module (yet to be released)
+
+## License:
+
+- MIT License (see COPYING file)
