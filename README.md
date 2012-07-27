@@ -31,11 +31,34 @@ bricks, servers, and clients -- but not pools or volumes.
             mounted => "mounted";
     }
 
+### Targeted self-heal
+
+This module also provides the reference implementation of [targeted self-heal].
+
+Requirements to use this feature are:
+
+1. Glusterfs version in 3.1 or 3.2 series.  It's not necessary on Glusterfs 3.3+
+1. Bricks are named <volume>N in a common brick parent directory (eg. /bricks/myvol0)
+1. The server with bricks in the volume also has a client mount of the volume
+
+To use, add a gluster::selfheal::hourly declaration to each server with bricks 
+in the volume...
+
+    gluster::selfheal::hourly {
+        "myvol_staging":
+            mount_point => "/mnt/myvol",
+            mmin => "-1440";
+    }
+
+I _highly_ recommend reviewing & customizing this feature to suit your own needs.  
+
 ## Dependencies:
 
-- My nagios module (yet to be released)
-- My logstash module (yet to be released)
+- My nagios module (yet to be released; replace with your own)
+- My logstash module (yet to be released; comment or remove, for now)
 
 ## License:
 
 - MIT License (see COPYING file)
+
+[targeted self-heal]: http://community.gluster.org/a/howto-targeted-self-heal-repairing-less-than-the-whole-volume/
