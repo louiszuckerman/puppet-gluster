@@ -14,11 +14,13 @@ bricks, servers, and clients -- but not pools or volumes.
 1. Create volumes as needed
 1. Add client declarations to client host manifests (see example below)
 
-### A server with a brick /dev/sde1:
+### A server with bricks /dev/sde{1..3}:
 
     include gluster::server
     gluster::server::brick {
-        "/bricks/myvol0": device => "e1";
+        "/bricks/myvol_staging1": device => "e1";
+        "/bricks/myvol_staging2": device => "e2";
+        "/bricks/myvol_staging3": device => "e3";
     }
 
 ### A FUSE client mounting myvol_staging:
