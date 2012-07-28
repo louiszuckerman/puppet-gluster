@@ -1,4 +1,5 @@
 class gluster::server inherits gluster {
+    $blockdevprefix = "s"#   usually "s" but on EC2 it's "xv" as in /dev/xvde1
     nagios::target::nrpeservicecheck {
         "glusterd" :
             description => "Gluster Daemon",
@@ -56,8 +57,6 @@ class gluster::server inherits gluster {
             default => "acl,noatime,nodiratime"#ebs
 
         }
-        # usually "s" but on EC2 it's "xv" as in /dev/xvde1
-        $blockdevprefix = "s"
         mount {
             "${name}" :
                 ensure => present,

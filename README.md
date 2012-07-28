@@ -11,8 +11,18 @@ bricks, servers, and clients -- but not pools or volumes.
 1. Format & mount brick filesystems
 1. Add brick declarations to server host manifests (see example below)
 1. Probe servers appropriately using gluster cli
-1. Create volumes as needed
+1. Create volumes as needed (see example below)
 1. Add client declarations to client host manifests (see example below)
+
+### Sample volume create command which would go along with these examples:
+
+    gluster volume create myvol_staging replica 2 \
+    server1.my.domain.net:/bricks/myvol_staging1 \
+    server2.my.domain.net:/bricks/myvol_staging1 \
+    server1.my.domain.net:/bricks/myvol_staging2 \
+    server2.my.domain.net:/bricks/myvol_staging2 \
+    server1.my.domain.net:/bricks/myvol_staging3 \
+    server2.my.domain.net:/bricks/myvol_staging3 \
 
 ### A server with bricks /dev/sde{1..3}:
 
